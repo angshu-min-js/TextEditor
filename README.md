@@ -1,3 +1,4 @@
+```
 /-------------------------------------------------------------------------
 / Starter Code and GUI Application for Course 2 in the
 / Java Programming: Object Oriented Design of 
@@ -12,17 +13,17 @@
 /
 / Date: 10/29/2015
 /-------------------------------------------------------------------------
+```
 
----------------------------------------------------------[ DESCRIPTION ]--
+## DESCRIPTION
 
 The text editor provides text autocompletion, spell check, spelling suggestions, calculation of edit distance between two words, generation of Markov text, and calculation of the Flesch Index. Data structures used: Tries, HashMaps, and Linked Lists. Unit testing was done via JUnit.
 
 
 
------------------------------------------------------[ ACKNOWLEDGEMENTS]--
+### ACKNOWLEDGEMENTS
 
-A big thank you to Tomas Mikula for creating RichTextFX 
-which was used as the text area in the GUI application.
-(Link: https://github.com/TomasMikula/RichTextFX)
+
+A big thank you to Tomas Mikula for creating RichTextFX  which was used as the text area in the GUI application. (Link: https://github.com/TomasMikula/RichTextFX)
 
 
