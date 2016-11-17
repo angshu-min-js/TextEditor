@@ -22,6 +22,7 @@ The text editor provides text autocompletion, spell check, spelling suggestions,
 - Part 1: Implement the missing methods in BasicDocument.java: getNumSentences, getNumWords, getNumSentences and getNumSyllables.
 - Part 2: Complete the Implementation of EfficientDocument
 - Part 3: Implement a Linked List
+- Part 4: Markov Text Generation
 
 
 ### ACKNOWLEDGEMENTS
