@@ -23,6 +23,9 @@ The text editor provides text autocompletion, spell check, spelling suggestions,
 - Part 2: Complete the Implementation of EfficientDocument
 - Part 3: Implement a Linked List
 - Part 4: Markov Text Generation
+- Part 5: Spell Checking and Autocomplete: BST
+- Part 6: Spelling Suggestions
+
 
 
 ### ACKNOWLEDGEMENTS

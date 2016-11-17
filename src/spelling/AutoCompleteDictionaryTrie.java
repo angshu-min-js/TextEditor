@@ -1,7 +1,9 @@
 package spelling;
 
 import java.util.List;
+import java.util.Queue;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,7 +42,21 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean addWord(String word)
 	{
 	    //TODO: Implement this method.
-	    return false;
+		word = word.toLowerCase();
+		TrieNode currentNode = root;
+		for(Character c : word.toCharArray())
+		{
+			TrieNode child = currentNode.getChild(c);
+			if(child == null)
+				currentNode = currentNode.insert(c);
+			else
+				currentNode =  child;
+		}
+		if (currentNode.endsWord())
+			return false;
+		currentNode.setEndsWord(true);
+		size++;
+		return true;
 	}
 	
 	/** 
@@ -50,7 +66,7 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public int size()
 	{
 	    //TODO: Implement this method
-	    return 0;
+	    return size;
 	}
 	
 	
@@ -60,7 +76,8 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 	public boolean isWord(String s) 
 	{
 	    // TODO: Implement this method
-		return false;
+		TrieNode node = findTrieNode(root, s.toLowerCase());
+		return node == null ? false: node.endsWord();
 	}
 
 	/** 
@@ -101,7 +118,28 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
     	 //       Add all of its child nodes to the back of the queue
     	 // Return the list of completions
     	 
-         return null;
+    	 List<String> predictions = new ArrayList<>();
+ 		TrieNode stem = findTrieNode(root, prefix);
+
+ 		if (stem == null)
+ 			return predictions;
+
+ 		Queue<TrieNode> toExplore = new LinkedList<>();
+ 		toExplore.add(stem);
+
+ 		while (predictions.size() < numCompletions && !toExplore.isEmpty()) {
+ 			TrieNode currentNode = toExplore.remove();
+ 			if (currentNode.endsWord())
+ 				predictions.add(currentNode.getText());
+
+ 			for (Character c : currentNode.getValidNextCharacters()) {
+ 				TrieNode child = currentNode.getChild(c);
+ 				if (child != null)
+ 					toExplore.add(child);
+ 			}
+ 		}
+
+ 		return predictions;
      }
 
  	// For debugging
@@ -125,6 +163,11 @@ public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
  		}
  	}
  	
+ 	private TrieNode findTrieNode(TrieNode node, String key) {
+		if (node == null || key.isEmpty())
+			return node;
 
+		return findTrieNode(node.getChild(key.charAt(0)), key.substring(1));
+	}
 	
 }
