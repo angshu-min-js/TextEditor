@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 
 /**
@@ -76,7 +77,18 @@ public class NearbyWords implements SpellingSuggest {
 	 * @return
 	 */
 	public void insertions(String s, List<String> currentList, boolean wordsOnly ) {
-		// TODO: Implement this method  
+		// TODO: Implement this method 
+		for(int index = 0; index<=s.length(); index++)
+		{
+			for (int charCode = Character.getNumericValue('a'); charCode <= Character.getNumericValue('z'); charCode++){
+				StringBuilder sb = new StringBuilder(s);
+				sb.insert(index, (char) charCode);
+				if (!currentList.contains(sb.toString()) && (!wordsOnly || dict.isWord(sb.toString()))
+						&& !s.equals(sb.toString())) {
+					currentList.add(sb.toString());
+				}
+			}
+		}
 	}
 
 	/** Add to the currentList Strings that are one character deletion away
@@ -88,6 +100,17 @@ public class NearbyWords implements SpellingSuggest {
 	 */
 	public void deletions(String s, List<String> currentList, boolean wordsOnly ) {
 		// TODO: Implement this method
+		for(int index = 0; index<=s.length(); index++)
+		{
+			for (int charCode = Character.getNumericValue('a'); charCode <= Character.getNumericValue('z'); charCode++){
+				StringBuilder sb = new StringBuilder(s);
+				sb.deleteCharAt(index);
+				if (!currentList.contains(sb.toString()) && (!wordsOnly || dict.isWord(sb.toString()))
+						&& !s.equals(sb.toString())) {
+					currentList.add(sb.toString());
+				}
+			}
+		}
 	}
 
 	/** Add to the currentList Strings that are one character deletion away
@@ -100,7 +123,8 @@ public class NearbyWords implements SpellingSuggest {
 	public List<String> suggestions(String word, int numSuggestions) {
 
 		// initial variables
-		List<String> queue = new LinkedList<String>();     // String to explore
+		int cc = THRESHOLD;
+		Queue<String> queue = new LinkedList<String>();     // String to explore
 		HashSet<String> visited = new HashSet<String>();   // to avoid exploring the same  
 														   // string multiple times
 		List<String> retList = new LinkedList<String>();   // words to return
@@ -111,7 +135,16 @@ public class NearbyWords implements SpellingSuggest {
 		visited.add(word);
 					
 		// TODO: Implement the remainder of this method, see assignment for algorithm
-		
+		while (!queue.isEmpty() && retList.size() < numSuggestions && cc > 0) {
+			for (String neighbor : distanceOne(queue.remove(), true))
+				if (!visited.contains(neighbor)) {
+					visited.add(neighbor);
+					queue.add(neighbor);
+					retList.add(neighbor);
+				}
+			cc--;
+		}
+
 		return retList;
 
 	}	

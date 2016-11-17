@@ -25,6 +25,7 @@ The text editor provides text autocompletion, spell check, spelling suggestions,
 - Part 4: Markov Text Generation
 - Part 5: Spell Checking and Autocomplete: BST
 - Part 6: Spelling Suggestions
+- Part 7: Near By Words
 
 
 
