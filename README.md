@@ -27,6 +27,8 @@ The text editor provides text autocompletion, spell check, spelling suggestions,
 - Part 6: Spelling Suggestions
 - Part 7: Near By Words
 
+![Text Editor] (./texteditor.JPG)
+
 ### Generated JAR: https://www.dropbox.com/s/4isrueo7eosml66/texteditor.jar?dl=0
 
 ### ACKNOWLEDGEMENTS
