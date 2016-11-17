@@ -67,7 +67,25 @@ public abstract class Document {
 		// TODO: Implement this method so that you can call it from the 
 	    // getNumSyllables method in BasicDocument (module 2) and 
 	    // EfficientDocument (module 3).
-	    return 0;
+		int nSyllables = 0;
+		int wordLen = word.length();
+		boolean found = false;
+		word = word.toLowerCase();
+		for (int i=0; i<wordLen;i++){
+			CharSequence curChar = word.substring(i, i+1);
+			boolean isVowel = "aieouy".contains(curChar);
+			if(isVowel){
+				if(i==wordLen-1){
+					if(!found && nSyllables != 0 && curChar.equals("e"))
+						return nSyllables;
+					return ++nSyllables;
+				}				
+			}
+			else if (found) nSyllables++;
+			found = isVowel;
+		}
+		
+	   return nSyllables;
 	}
 	
 	/** A method for testing
@@ -132,7 +150,7 @@ public abstract class Document {
 	{
 	    // TODO: You will play with this method in week 1, and 
 		// then implement it in week 2
-	    return 0.0;
+	    return (206.835 - 1.015 * ((double)getNumWords()/getNumSentences()) - 84.6 * (getNumSyllables() / (double)getNumWords()));
 	}
 	
 	

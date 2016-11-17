@@ -19,6 +19,8 @@
 
 The text editor provides text autocompletion, spell check, spelling suggestions, calculation of edit distance between two words, generation of Markov text, and calculation of the Flesch Index. Data structures used: Tries, HashMaps, and Linked Lists. Unit testing was done via JUnit.
 
+- Part 1: Implement the missing methods in BasicDocument.java: getNumSentences, getNumWords, getNumSentences and getNumSyllables.
+
 
 
 ### ACKNOWLEDGEMENTS
